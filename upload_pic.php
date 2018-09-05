@@ -17,10 +17,10 @@ if(isset($_POST["submit"])) {
         $uploadOk = 0;
     }
 // Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
+// if (file_exists($target_file)) {
+//     echo "Sorry, file already exists.";
+//     $uploadOk = 0;
+// }
 // Check file size
 if ($_FILES["upfile"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
@@ -48,12 +48,13 @@ if ($uploadOk == 0) {
 // // データ追加
     // $IMG = "INSERT INTO img (img,userID,word,) VALUES ('$upfile','$user','$me')";
       $userID=$_SESSION['userID'];
-      $img=$_FILES["upfile"]["name"];
+      $img=$target_file;
       $word=$_POST["letter"];
-      $_SESSION['post'] = $img;
+      $user=$_SESSION['user'];
 
-     $SQL = "INSERT INTO img (img,user,word) VALUES ('$img','$userID','$word')";
-     $upload = mysqli_query($conn,$SQL);
+       var_dump($img);
+       $SQL = "INSERT INTO img (imgID,img,user,word) VALUES ('$userID',$img','$user','$word')";
+       $upload = mysqli_query($conn,$SQL);
 
      echo mysqli_error($conn);
      var_dump($upload);
@@ -62,7 +63,7 @@ if ($uploadOk == 0) {
         print("Unsuccessful.<BR>");
         exit;
        }else
-       {header('Location: POST.php');
+       {header('Location: user.php');
         exit;
   }
  }

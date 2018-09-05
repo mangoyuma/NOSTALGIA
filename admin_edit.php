@@ -54,8 +54,6 @@ if (isset($_POST["editpost"])) {
 </div>
 
 <?php
-
-
  $sql ="SELECT * FROM img WHERE imgID=$imgID";
  $result = $conn->query($sql);
  if($result->num_rows > 0){

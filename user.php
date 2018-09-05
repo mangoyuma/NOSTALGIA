@@ -1,10 +1,8 @@
-<div class="Uname">
 <?php
 session_start();
 include 'mysql.php';
 echo"<h2>".$_SESSION['user']."</h2>";
 ?>
-</div>
 
 <html>
 <head>
@@ -12,7 +10,7 @@ echo"<h2>".$_SESSION['user']."</h2>";
   <link rel="stylesheet" href="user.css">
   </head>
 <body>
-      <h1>NOSTALGRAM</h1><br>
+      <h1>NOSTALGIA</h1><br>
 <div class=logo>
   <ul>
     <li>
@@ -62,13 +60,9 @@ if(isset($_POST["submit"])){
    echo "No match found";
   }
 }  
-?>
 
 
-<div class='allpic'>
-<?php
-include 'mysql.php';
-$userID=$_SESSION["userID"];
+echo "<div class='allpic'>";
 // MYSQLにユーザーの値
 // 画像データ取得
 $sql ="SELECT * FROM img";
@@ -81,43 +75,16 @@ if($result->num_rows > 0){
 
         // echo "$row['img']"; isnt work
 
-    echo "<div class='displaypic'>";
+   echo "<div class='displaypic'>";
+    echo "<a href='post_user.php?imgID=$imgID'>";
     echo "<img class='userpost' src='photoupload/upfile/". $row['img'] ."'>";
-    echo $row['word'];
-    echo "</div>";
+    echo "</a>";
+   echo "<div>";
 }
     }else{
     echo "0 results";
 }
-// 画像ヘッダとしてjpegを指定（取得データがjpegの場合）
-// header("Content-Type: image/jpeg");
-// // バイナリデータを直接表示
-// echo"$row[0]";
-?>
+ ?>
 </body>
 </html>
-<!-- 
-//   $DefaultSQL = "SELECT * FROM user";
-//   $result = $conn->query($DefaultSQL);
 
-// if(isset($_POST["submit"])){
-//   $search=$_POST["search"];
-
-//   var_dump($search);
-  
-//   $searchSQL= "SELECT * FROM user WHERE user LIKE '%$search%'";
-
-//     $result=$conn->query($searchSQL);
-
-//     if ($result->num_rows > 0){
-//       while($row=$result->fetch_assoc()){
-//       $user = $row["user"];
-//       $pic = $row["Pic"];
-
-//       echo "$user<br>";
-//       echo "$pic";
-//       }
-//    } else{
-//    echo "No match found";
-//   }
-// } -->

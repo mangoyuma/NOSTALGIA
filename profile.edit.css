@@ -1,20 +1,19 @@
 h1{
   text-align: center;
-  margin-top: 1%;
+  margin-top: 3%;
   font-size: 2rem;
   font-family:'Kaushan Script', cursive;
     }
 
 h2{
+   margin-top: 3%;
   font-size: 2rem;
   margin-top: 10px;
-  font-family:'Kaushan Script', cursive;
 }
 
 ul {
     margin:0;
     padding:0;
-/*    margin-left:40px;*/
     list-style-type: none;
 }
 
@@ -28,16 +27,17 @@ li{
     vertical-align: middle;
 }
 
+.logo  {
+    text-align: center;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+}
+
 li img{
-   width:70px;
+    width:70px;
     height:70px;
     display: inline-block;
     margin-bottom: 10px;
-}
-
-.img {
-  width:50px;
-    height:50px;
 }
 
 .search {
@@ -57,22 +57,14 @@ li img{
    margin-right: auto;
 }
 
-.displaypic{ 
+.displaypic{
+  float:left;
   text-align: center;
 }
 
 .userpost {
-    float:left;
     width:200px;
     height:200px;
-     }
+    margin-bottom:100px;
 
-.logo {
-    text-align: center;
-    margin-left: 0 auto;
-    margin-right: 0 auto;
-}
-
-/*.logo li{
-   display: inline-block; 
-}*/
+  }

@@ -1,9 +1,8 @@
 <?php
  include 'mysql.php';
   session_start();
- $userID=$_SESSION['userID'];
+  
   echo"<h2>".$_SESSION['user']."</h2>";
-
  ?>
 
 <html>
@@ -13,8 +12,7 @@
  </head>
 
 <body>
- <h1>NOSTALGRAM</h1><br>
-
+ <h1>NOSTALGIA</h1><br>
 <div class=logo>
   <ul>
     <li>
@@ -30,12 +28,6 @@
     </li>
 
   
-    <li>
-        <a href="profile.edit.php">
-        <img src="mango.pic/P.edit.jpg">
-        </a>
-    </li> 
-
     <li>
        <a href="logout.php">
        <img src="mango.pic/logout.jpg" alt="home">
@@ -54,33 +46,26 @@
 <div class='allpic'>
 <?php
   include 'mysql.php';
-  $userID
-  $userID=$_SESSION["userID"];
-// MYSQLにユーザーの値
-// 画像データ取得
-   $sql ="SELECT * FROM img WHERE user=$userID";
+  $imgID=$_SESSION["imgID"];
+   $sql ="SELECT * FROM img WHERE imgID='$imgID'";
    $result = $conn->query($sql);
   if($result->num_rows > 0){ 
    while ($row = $result->fetch_assoc()) {
       $imgID=$row['imgID'];
       // Bring DB value and show it.
-
+var_dump($_SESSION["imgID"]);
         // echo "$row['img']"; isnt work
     echo "<div class='displaypic'>";
     echo "<a href='POST.php?imgID=$imgID'>";
     echo "<img class='userpost' src='photoupload/upfile/". $row['img'] ."'>";
     echo '</a>';
-    echo "</div>";
 
- }
+    echo "</div>";
+     }
     }
    else{
     echo "0 results";
 }
-// 画像ヘッダとしてjpegを指定（取得データがjpegの場合）
-// header("Content-Type: image/jpeg");
-// // バイナリデータを直接表示
-// echo"$row[0]";
 ?>
 </div>
 

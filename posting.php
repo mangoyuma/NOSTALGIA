@@ -3,7 +3,6 @@
 <title></title>
 </head>
 <body>
- 
 Select image to upload:<br>
 <form method="post" action="upload_pic.php" enctype="multipart/form-data">
    <input type="file" name="upfile">

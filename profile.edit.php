@@ -1,8 +1,9 @@
 <?php
 session_start();
 include 'mysql.php';
-echo"<h2>". $_SESSION['userID']."</h2>";
 
+  $userID=$_SESSION['userID'];
+  echo"<h2>".$_SESSION['user']."</h2>";
 
 if (isset($_POST["editprofile"])) {
 	$me = $_POST["me"];
@@ -21,11 +22,11 @@ if (isset($_POST["editprofile"])) {
 <html>
 <head>
 <title></title>
-<link rel="stylesheet" href="profile.css">
+<link rel="stylesheet" href="profile.edit.css">
 </head>
 <body>
 
- <h1>NOSTALGRAM</h1><br>
+ <h1>NOSTALGIA</h1><br>
 
 <div class=logo>
   <ul>
@@ -69,25 +70,21 @@ if (isset($_POST["editprofile"])) {
  if($result->num_rows > 0){
  	while ($row = $result->fetch_assoc()) {
  		$userID = $row['userID'];
- 		$pic = $row['pic'];
+ 		$pic = $row['Pic'];
  		$me = $row['me'];
   	}
  }
  ?>
 
- <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+
  	<div class="allpic">
  		<div class="displaypic">
- 			<img class="userpost" src="photoupload/user.file/<?php echo $pic; ?>">
- 		</div>
- 		
- 		<div class="word">
- 			<textarea name="word" rows=10 cols=70>
- 			<?php echo $me; ?></textarea>
- 			<input type="hidden" name="userID" value="<?php echo $userID; ?>">
+ 			 <img class="userpost" src="photoupload/user.file/<?php echo $pic; ?>">
  			<button type="submit" name="editprofile">EDIT PROFILE</button>
  		</div>
  	</div>
  </form>
+
 </body>
 </html>

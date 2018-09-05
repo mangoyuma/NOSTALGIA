@@ -77,10 +77,9 @@ li img{
 }
 
 
-.word{
+.word textarea {
   float:left;
-  margin-right: 30px;
-  width:500px;
+  width:564px;
   height:200px;
   border:7px solid green;
 }
