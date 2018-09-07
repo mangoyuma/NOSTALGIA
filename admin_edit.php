@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'mysql.php';
-echo"<h2>".$_SESSION['userID']."</h2>";
 
 if ($_GET){
 	$imgID=$_GET["imgID"];
@@ -10,44 +9,36 @@ if ($_GET){
 	$imgID = $_POST["imgID"];
 }
 
-if (isset($_POST["editpost"])) {
-	$word = $_POST["word"];
-
-	$sql_edit = "UPDATE img SET word='$word' WHERE imgID=$imgID";
-
-	if ($conn->query($sql_edit)=== TRUE) {
-		header("Location: POST.php?imgID=$imgID");
+if (isset($_POST["Delete"])) {
+	
+$sql = "DELETE FROM img WHERE imgID='$imgID'";
+  if ($conn->query($sql)===TRUE) {
+    header("Location: admin.php?imgID=$imgID");
       } else {
-   	 echo "Error during updating record:" .$conn->error;
-   }
-
+     echo "Error during updating record:" .$conn->error;
+  }
 }
-?>
+  ?>
 
 <html>
 <head>
-	<link rel="stylesheet" href="POST.css">
+	<link rel="stylesheet" href="admin_edit.css">
 </head>
 <title></title>
 </head>
 <body>
  
-
 <h1>NOSTALGIA</h1><br>
 <div class=logo>
   <ul>
     <li>
-        <a href="user.php">
+        <a href="admin.php">
         <img src="mango.pic/home.png" alt="home">
         </a>
     </li>    
-    
-    <li> <a href="posting.php">
-        <img src="mango.pic/Post_logo.png" alt="post">
-       </a>
-    </li>
-    <li><a href="profile.php">
-        <img src="mango.pic/acount_logo.jpg" alt="profile">
+     <li>
+       <a href="logout.php">
+       <img src="mango.pic/logout.jpg" alt="home">
        </a>
     </li>
     </ul>   
@@ -61,12 +52,13 @@ if (isset($_POST["editpost"])) {
  		$imgID = $row['imgID'];
  		$word = $row["word"];
  		$img = $row["img"];
+    $IMGuser = $row["user"];
  	}
  }
  ?>
 
  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
- 	<div class="allpic">
+  <div class="allpic">
  		<div class="displaypic">
  			<img class="userpost" src="photoupload/upfile/<?php echo $img; ?>">
  			<!-- file location and bring DB value.(img) -->
@@ -76,12 +68,28 @@ if (isset($_POST["editpost"])) {
  			<textarea name="word" rows=10 cols=70><?php echo $word; ?></textarea>
  			<input type="hidden" name="imgID" value="<?php echo $imgID; ?>">
  			<!-- $imgID USER's word -->
-              
-<!-- <?php echo $imgID; ?> is method GET -->
- 			<button type="submit" name="editpost">EDIT POST</button>
- 		</div>
-        <button type="submit" name="Delete">Delete</button>
- 	</div>
+    </div>
+      <button type="submit" name="Delete">Delete</button>
+          
+    <div class='user'>
+     <?php
+      $SQL ="SELECT * FROM comment WHERE imgID=$imgID";
+      $result = $conn->query($SQL);
+ 
+      if($result->num_rows > 0){
+      while ($row = $result->fetch_assoc()) {
+      $commentID = $row['commentID'];
+      $user = $row["user"];
+      $comment = $row["comment"];  
+      echo"$user:<br>";
+      echo"$comment <br><br>";   
+      }
+     } else 
+     {echo"No comment";
+    }
+  ?> 
+    </div> 	
+  </div>
  </form>
 </body>
 </html>

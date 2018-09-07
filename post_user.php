@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'mysql.php';
-echo"<h2>".$_SESSION['user']."</h2>";
 
 if ($_GET){
   $imgID=$_GET["imgID"];
@@ -30,13 +29,12 @@ if(isset($_POST["submit"])){
   $sql_comment = "INSERT INTO comment (user,comment,imgID) VALUES ('$user_name','$comment','$imgID')";
 
   if ($conn->query($sql_comment) === TRUE) {
-    header('Location: POST_user.php');
+    header('Location: user.php');
   } else {
     echo "Unsuccessfuly";
     echo $conn->error;
   }
 }
-
 ?>
 
 <html>
@@ -73,9 +71,11 @@ if(isset($_POST["submit"])){
   if($result->num_rows > 0){
      while ($row = $result->fetch_assoc()) {
       $imgID = $row['imgID'];
+      $user= $row["user"];
       $word = $row["word"];
       $img = $row["img"];
-      $_SESSION["userID"]=$imgID;
+      $_SESSION["userID"]=$user;
+      echo "$user";
    }
   }
 ?>
@@ -95,11 +95,11 @@ if(isset($_POST["submit"])){
 
 <!-- Comment -->
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-  <textarea name="usercomment" cols=82 rows=5 required></textarea><br>
-  
-  <input type="hidden" name="imgID" value=<?php echo $imgID ?> >
-  <input type="submit" name="submit" value="Comment">
 
+  <textarea  name="usercomment" cols=82 rows=5 required></textarea><br>
+  
+  <input type="hidden" name="imgID" value= <?php echo $imgID ?> >
+  <input type="submit" name="submit" value="Comment">
 </form>
 
  <div class='user'>
@@ -112,12 +112,13 @@ if(isset($_POST["submit"])){
       $commentID = $row['commentID'];
       $user = $row["user"];
       $comment = $row["comment"];  
-      echo"$user <br>";
+      echo"$user:<br>";
       echo"$comment <br><br>";   
     }
   } else {
     echo"No comment";
   }
+
 ?> 
 </div> 
 

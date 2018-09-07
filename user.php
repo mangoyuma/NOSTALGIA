@@ -39,22 +39,19 @@ echo"<h2>".$_SESSION['user']."</h2>";
 </form>
 
 <?php
-  $DefaultSQL = "SELECT * FROM user,img";
+  $DefaultSQL = "SELECT * FROM img";
   $result = $conn->query($DefaultSQL);
   
 if(isset($_POST["submit"])){
   $search=$_POST["search"];
 
-  $post="SELECT * FROM img,user WHERE img LIKE '%$search%'";
+  $post="SELECT * FROM img WHERE user LIKE '%$search%'";
   $result=$conn->query($post);
   
     if ($result->num_rows > 0){
       while($row=$result->fetch_assoc()){
       $user = $row["user"];
-      $img = $row["img"];
-
       echo "$user<br>";
-      echo "$img";
       }
    } else{
    echo "No match found";

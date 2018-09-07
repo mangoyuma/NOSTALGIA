@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'mysql.php';
-echo"<h2>".$_SESSION['userID']."</h2>";
 
 if ($_GET){
 	$imgID=$_GET["imgID"];
@@ -13,17 +12,26 @@ if ($_GET){
 if (isset($_POST["editpost"])) {
 	$word = $_POST["word"];
 
-	$sql_edit = "UPDATE img SET word='$word' WHERE imgID=$imgID";
+	$sql_edit = "UPDATE img SET word='$word' WHERE imgID='$imgID'";
 
 	if ($conn->query($sql_edit)=== TRUE) {
-		header("Location: POST.php?imgID=$imgID");
+		header("Location: user.php?imgID=$imgID");
       } else {
    	 echo "Error during updating record:" .$conn->error;
    }
-
 }
-?>
 
+if (isset($_POST["Delete"])) {
+
+  $sql_delete = "DELETE FROM img WHERE imgID='$imgID'";
+  if ($conn->query($sql_delete)===TRUE) {
+		header("Location: user.php?imgID=$imgID");
+      } else {
+   	 echo "Error during updating record:" .$conn->error;
+   }
+  } 
+?>
+<a href="user.php">
 <html>
 <head>
 	<link rel="stylesheet" href="POST.css">
@@ -54,8 +62,6 @@ if (isset($_POST["editpost"])) {
 </div>
 
 <?php
-
-
  $sql ="SELECT * FROM img WHERE imgID=$imgID";
  $result = $conn->query($sql);
  if($result->num_rows > 0){
@@ -82,6 +88,7 @@ if (isset($_POST["editpost"])) {
 <!-- <?php echo $imgID; ?> is method GET -->
  			<button type="submit" name="editpost">EDIT POST</button>
  		</div>
+
         <button type="submit" name="Delete">Delete</button>
  	</div>
  </form>

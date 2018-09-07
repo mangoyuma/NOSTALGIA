@@ -48,16 +48,17 @@ if ($uploadOk == 0) {
 // // データ追加
     // $IMG = "INSERT INTO img (img,userID,word,) VALUES ('$upfile','$user','$me')";
       $userID=$_SESSION['userID'];
-      $img=$target_file;
+      $img=basename( $_FILES["upfile"]["name"]);
       $word=$_POST["letter"];
       $user=$_SESSION['user'];
 
        var_dump($img);
-       $SQL = "INSERT INTO img (imgID,img,user,word) VALUES ('$userID',$img','$user','$word')";
+       $SQL = "INSERT INTO img (img,user,word) VALUES ('$img','$user','$word')";
        $upload = mysqli_query($conn,$SQL);
 
      echo mysqli_error($conn);
-     var_dump($upload);
+     var_dump($user);
+     echo "<br>";
 
     if (!$upload){
         print("Unsuccessful.<BR>");

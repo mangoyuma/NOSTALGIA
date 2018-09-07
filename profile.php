@@ -1,8 +1,7 @@
 <?php
+ session_start();
  include 'mysql.php';
-  session_start();
-  
-  echo"<h2>".$_SESSION['user']."</h2>";
+ echo"<h2>".$_SESSION['user']."</h2>";
  ?>
 
 <html>
@@ -46,17 +45,18 @@
 <div class='allpic'>
 <?php
   include 'mysql.php';
-  $imgID=$_SESSION["imgID"];
-   $sql ="SELECT * FROM img WHERE imgID='$imgID'";
+  
+  $who=$_SESSION['user'];
+   $sql ="SELECT * FROM img WHERE user='$who'";
    $result = $conn->query($sql);
   if($result->num_rows > 0){ 
    while ($row = $result->fetch_assoc()) {
       $imgID=$row['imgID'];
       // Bring DB value and show it.
-var_dump($_SESSION["imgID"]);
+
         // echo "$row['img']"; isnt work
     echo "<div class='displaypic'>";
-    echo "<a href='POST.php?imgID=$imgID'>";
+    echo "<a href='post.edit.php?imgID=$imgID'>";
     echo "<img class='userpost' src='photoupload/upfile/". $row['img'] ."'>";
     echo '</a>';
 

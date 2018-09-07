@@ -10,35 +10,32 @@
   <video class="bgvid" autoplay="autoplay" muted="muted" preload="auto" loop>
       <source src="http://mazwai.com/system/posts/videos/000/000/109/webm/leif_eliasson--glaciartopp.webm?1410742112" type="video/webm">
   </video>
-</div>
 
-<div class="inner-container">
+
+  <div class="inner-container">
       <video class="bgvid inner" autoplay="autoplay" muted="muted" preload="auto" loop>
       <source src="http://mazwai.com/system/posts/videos/000/000/109/webm/leif_eliasson--glaciartopp.webm?random=1" type="video/webm">
- </video>
-</div>
-
- 
- <div class="box">
+  </video>
+  
+  <div class="box">
     <h1>NOSTALGIA</h1> 
     <form action="login2.php" method="POST">
       <input type="text" name="user" placeholder="user"/>
       <input type="password" name="pass" placeholder="password"/>
-
-    
-     <div class="user">     
-       Login Type<br>
-       USER
-       <input type="radio" name="login_user" value="User"  required>
+      <div class="user">     
+        Login Type<br> 
+        USER
+        <input type="radio" name="login_user" value="User"  required>
         ADMIN
-       <input type="radio" name="login_user" value="Admin" required>
-     </div>     
+        <input type="radio" name="login_user" value="Admin" required>
+      </div>     
+      <button name="login" value="login">Login </button>
     </form>
-    
-   <button name="login" value="login">Login</button>
-     <p>Not a member? 
-       <a href="create_acount.html">Sign Up</a>
-     </p> 
- </div>
+    <p>Not a member? 
+    <a href="create_acount.html">Sign Up</a>
+    </p> 
+  </div>
+</div>
+</div>
 </body>
 </html>

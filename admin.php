@@ -1,8 +1,7 @@
 <?php
 session_start();
 include 'mysql.php';
-echo"<h2>".$_SESSION['admin']."</h2>";
-?>
+?>  <h2>Admin:Mango</h2>
 
 <html>
 <head>
@@ -14,20 +13,17 @@ echo"<h2>".$_SESSION['admin']."</h2>";
 <div class=logo>
   <ul>
     <li>
-        <a href="user.php">
+        <a href="admin.php">
         <img src="mango.pic/home.png" alt="home">
         </a>
     </li>    
-    
-    <li> <a href="posting.php">
-        <img src="mango.pic/Post_logo.png" alt="post">
+
+     <li>
+       <a href="logout.php">
+       <img src="mango.pic/logout.jpg" alt="home">
        </a>
     </li>
 
-    <li><a href="profile.php">
-        <img src="mango.pic/acount_logo.jpg" alt="profile">
-       </a>
-    </li>
   </ul>
 </div>
 
@@ -39,22 +35,20 @@ echo"<h2>".$_SESSION['admin']."</h2>";
 </form>
 
 <?php
-  $DefaultSQL = "SELECT * FROM user,img";
+  $DefaultSQL = "SELECT * FROM user";
   $result = $conn->query($DefaultSQL);
   
 if(isset($_POST["submit"])){
   $search=$_POST["search"];
 
-  $post="SELECT * FROM img,user WHERE img LIKE '%$search%'";
+  $post="SELECT * FROM user WHERE user LIKE '%$search%'";
   $result=$conn->query($post);
   
     if ($result->num_rows > 0){
       while($row=$result->fetch_assoc()){
       $user = $row["user"];
-      $img = $row["img"];
-
+ 
       echo "$user<br>";
-      echo "$img";
       }
    } else{
    echo "No match found";
@@ -76,7 +70,7 @@ if($result->num_rows > 0){
         // echo "$row['img']"; isnt work
 
    echo "<div class='displaypic'>";
-    echo "<a href='post.edit.php?imgID=$imgID'>";
+    echo "<a href='admin_edit.php?imgID=$imgID'>";
     echo "<img class='userpost' src='photoupload/upfile/". $row['img'] ."'>";
     echo "</a>";
    echo "<div>";

@@ -13,7 +13,7 @@ if ($user_type=="user"){
 if ($conn->query($usql)===TRUE) {
   	echo "New user record created successfuly<br>
   	     Click here and login
-  	     <a href='login.html'>LOGIN HOME</a>";
+  	     <a href='login.php'>LOGIN HOME</a>";
 
     } else {
      echo "New user record is unsuccessfuly";
@@ -27,7 +27,7 @@ if($user_type=="admin"){
 if ($conn->query($asql)===TRUE) {
     echo "New admin record created successfuly<br>
   	     Click here and login
-  	     <a href='login.html'>LOGIN HOME</a>";
+  	     <a href='login.php'>LOGIN HOME</a>";
 
     } else {
      echo "New admin record is unsuccessfuly
