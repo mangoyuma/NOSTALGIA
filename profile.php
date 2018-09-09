@@ -35,12 +35,34 @@
   </ul>
 </div>
 
-<form action="search.php" method="post" enctype="multipart/form-data">
+<form action="profile.php" method="post" enctype="multipart/form-data">
         <div class="search">
-         <input type="text" name="submit" id="text">
+         <input type="text" name="search" id="text">
          <input type="submit" value="search" name="submit">
         </div>  
 </form>
+
+<?php
+  $DefaultSQL = "SELECT * FROM img";
+  $result = $conn->query($DefaultSQL);
+  
+if(isset($_POST["submit"])){
+  $search=$_POST["search"];
+
+  $post="SELECT * FROM img WHERE user LIKE '%$search%'";
+  $result=$conn->query($post);
+  
+    if ($result->num_rows > 0){
+      while($row=$result->fetch_assoc()){
+      $user = $row["user"];
+      echo "User Name List<br>";
+      echo "$user<br>";
+      }
+   } else{
+   echo "No match found";
+  }
+}  
+?>
 
 <div class='allpic'>
 <?php

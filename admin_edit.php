@@ -65,11 +65,12 @@ $sql = "DELETE FROM img WHERE imgID='$imgID'";
  		</div>
 
  		<div class="word">
- 			<textarea name="word" rows=10 cols=70><?php echo $word; ?></textarea>
+ 			<textarea name="word" rows=16 cols=73><?php echo $word; ?></textarea>
  			<input type="hidden" name="imgID" value="<?php echo $imgID; ?>">
  			<!-- $imgID USER's word -->
     </div>
-      <button type="submit" name="Delete">Delete</button>
+
+   <button type="submit" name="Delete">Delete</button>
           
     <div class='user'>
      <?php

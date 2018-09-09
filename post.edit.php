@@ -86,7 +86,7 @@ if (isset($_POST["Delete"])) {
  			<!-- $imgID USER's word -->
               
 <!-- <?php echo $imgID; ?> is method GET -->
- 			<button type="submit" name="editpost">EDIT POST</button>
+ 			<button type="submit" name="editpost">EDIT</button>
  		</div>
 
         <button type="submit" name="Delete">Delete</button>

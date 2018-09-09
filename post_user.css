@@ -92,9 +92,7 @@ li img{
   }
 
 .user {
- 
-  height: 15em;
-  border: dotted;
-  overflow: auto;
-  border-bottom: 10px soild black;
-}
+  height:12em;
+  border:dotted;
+  overflow:auto;
+    }

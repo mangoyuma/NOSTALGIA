@@ -39,13 +39,13 @@ if(isset($_POST["submit"])){
 
 <html>
 <head>
-  <link rel="stylesheet" href="POST_user.css">
+  <link rel="stylesheet" href="post_user.css">
 </head>
 <title></title>
 </head>
 <body>
  
-<h1>NOSTAGIA</h1><br>
+<h1>NOSTALGIA</h1><br>
 <div class=logo>
   <ul>
     <li>
@@ -88,7 +88,7 @@ if(isset($_POST["submit"])){
     </div>
 
     <div class="word">
-      <textarea value="" name="word" rows=10 cols=82><?php echo $word; ?></textarea>
+      <textarea value="" name="word" rows=16 cols=82.9><?php echo $word; ?></textarea>
       <input type="hidden" name="imgID" value="<?php echo $imgID; ?>">
     </div>
 </form>
@@ -96,7 +96,7 @@ if(isset($_POST["submit"])){
 <!-- Comment -->
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
 
-  <textarea  name="usercomment" cols=82 rows=5 required></textarea><br>
+  <textarea  name="usercomment" cols=82 rows=3 required></textarea><br>
   
   <input type="hidden" name="imgID" value= <?php echo $imgID ?> >
   <input type="submit" name="submit" value="Comment">
