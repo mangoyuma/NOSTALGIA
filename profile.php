@@ -55,7 +55,7 @@ if(isset($_POST["submit"])){
     if ($result->num_rows > 0){
       while($row=$result->fetch_assoc()){
       $user = $row["user"];
-      echo "User Name List<br>";
+      echo "Finding List<br>";
       echo "$user<br>";
       }
    } else{

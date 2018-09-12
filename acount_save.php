@@ -1,10 +1,11 @@
 <?php 
 include 'mysql.php';
-if (isset($_POST["login"])) {
-$user=$_POST["user"];
 
+$user=$_POST["user"];
 $pass=$_POST["pass"];
 $user_type=$_POST["type"];
+
+if (isset($_POST["login"])) {
 
 if ($user_type=="user"){
 	$usql = "INSERT INTO user (user,pass,type)
@@ -33,8 +34,14 @@ if ($conn->query($asql)===TRUE) {
      echo "New admin record is unsuccessfuly
      Click here and login
   	     <a href='create_acount.html'>SING UP</a><br>";
+  } 
+
+   $erro="SELECT * FROM user WHERE user = '$user'";
+   $result_erro = $conn->query($erro);
+  if($result_erro->num_rows > 0){
+  echo "Already same user acount.";
+    }
+   }
   }
-}
-}
 ?>
   
