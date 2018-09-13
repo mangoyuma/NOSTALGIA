@@ -43,5 +43,7 @@ if ($conn->query($asql)===TRUE) {
   
    }
   }
-?>
+  ?>
+
+<br><a href="create_acount.html">Do it again</a>
   
