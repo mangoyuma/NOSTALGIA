@@ -8,16 +8,20 @@ $user_type=$_POST["type"];
 if (isset($_POST["login"])) {
 
 if ($user_type=="user"){
-	$usql = "INSERT INTO user (user,pass,type)
- VALUES('$user','$pass','$user_type')";
+   $erro="SELECT * FROM user WHERE user = '$user'";
+   $result_erro = $conn->query($erro);
+	 $usql = "INSERT INTO user (user,pass,type)VALUES('$user','$pass','$user_type')";
 
-if ($conn->query($usql)===TRUE) {
-  	echo "New user record created successfuly<br>
-  	     Click here and login
-  	     <a href='login.php'>LOGIN HOME</a>";
-
-    } else {
-     echo "New user record is unsuccessfuly";
+  if($result_erro->num_rows > 0){
+  echo "Already same user acount.";
+  } elseif ($conn->query($usql)===TRUE) {
+    echo "New user record created successfuly<br>
+         Click here and login
+         <a href='login.php'>LOGIN HOME</a>";
+  } else {
+    echo "New user record is unsuccessfuly
+     Click here and login
+         <a href='create_acount.html'>Sign UP</a><br>";
   }
 }
  
@@ -36,11 +40,7 @@ if ($conn->query($asql)===TRUE) {
   	     <a href='create_acount.html'>SING UP</a><br>";
   } 
 
-   $erro="SELECT * FROM user WHERE user = '$user'";
-   $result_erro = $conn->query($erro);
-  if($result_erro->num_rows > 0){
-  echo "Already same user acount.";
-    }
+  
    }
   }
 ?>

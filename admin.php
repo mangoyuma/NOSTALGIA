@@ -27,7 +27,7 @@ include 'mysql.php';
   </ul>
 </div>
 
-<form action="user.php" method="post" enctype="multipart/form-data">
+<form action="admin.php" method="post" enctype="multipart/form-data">
         <div class="search">
          <input type="text" name="search" id="text">
          <input type="submit" value="search" name="submit">
