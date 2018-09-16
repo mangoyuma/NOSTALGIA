@@ -19,7 +19,6 @@ if (isset($_POST["editpost"])) {
       } else {
      echo "Error during updating record:" .$conn->error;
    }
-
 }
 
 if(isset($_POST["submit"])){

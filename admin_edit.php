@@ -2,6 +2,7 @@
 session_start();
 include 'mysql.php';
 
+
 if ($_GET){
 	$imgID=$_GET["imgID"];
 
@@ -19,6 +20,8 @@ $sql = "DELETE FROM img WHERE imgID='$imgID'";
   }
 }
   ?>
+    
+<h2>Admin:Mango</h2>
 
 <html>
 <head>
@@ -50,6 +53,7 @@ $sql = "DELETE FROM img WHERE imgID='$imgID'";
  if($result->num_rows > 0){
  	while ($row = $result->fetch_assoc()) {
  		$imgID = $row['imgID'];
+    $founduser =$row['user'];
  		$word = $row["word"];
  		$img = $row["img"];
     $IMGuser = $row["user"];
@@ -65,7 +69,7 @@ $sql = "DELETE FROM img WHERE imgID='$imgID'";
  		</div>
 
  		<div class="word">
- 			<textarea name="word" rows=16 cols=73><?php echo $word; ?></textarea>
+      <textarea name="word" rows=16 cols=83><?php echo $founduser; ?>:<?php echo $word;?></textarea>
  			<input type="hidden" name="imgID" value="<?php echo $imgID; ?>">
  			<!-- $imgID USER's word -->
     </div>

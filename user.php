@@ -38,26 +38,29 @@ echo"<h2>".$_SESSION['user']."</h2>";
         </div>  
 </form>
 
+<!-- Search -->
 <?php
-  $DefaultSQL = "SELECT * FROM img";
-  $result = $conn->query($DefaultSQL);
-  
-if(isset($_POST["submit"])){
+ if(isset($_POST["submit"])){
   $search=$_POST["search"];
 
-  $post="SELECT * FROM img WHERE user LIKE '%$search%'";
+  $post="SELECT user FROM user WHERE user LIKE '%$search%'";
   $result=$conn->query($post);
   
     if ($result->num_rows > 0){
       while($row=$result->fetch_assoc()){
       $user = $row["user"];
+
       echo "Finding List<br>";
-      echo "$user<br>";
+      echo "<form action='userfound.php' method='POST'>";
+      echo "<input type='hidden' name='user' value= <?php echo $user ?> >";
+      echo "<input type='submit' name='Clickuser' value= $user>";
+      echo "</form>";
+     
       }
    } else{
    echo "No match found";
   }
-}  
+ }  
 
 
 echo "<div class='allpic'>";
@@ -83,6 +86,7 @@ if($result->num_rows > 0){
     echo "0 results";
 }
  ?>
+
 </body>
 </html>
 

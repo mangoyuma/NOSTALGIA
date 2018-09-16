@@ -1,8 +1,16 @@
 <?php
  session_start();
  include 'mysql.php';
- echo"<h2>".$_SESSION['user']."</h2>";
- ?>
+?>
+
+<?php
+// 検索したuser名をクリックするとそのユーザーが表示される
+
+ $found=$_POST['Clickuser'];
+if(isset($_POST["Clickuser"])){
+   echo "$found";
+    }
+    ?>
 
 <html>
  <head>
@@ -26,16 +34,10 @@
        </a>
     </li>
 
-  
-    <li>
-       <a href="logout.php">
-       <img src="mango.pic/logout.jpg" alt="home">
-       </a>
-    </li>
   </ul>
 </div>
 
-<form action="profile.php" method="post" enctype="multipart/form-data">
+<form action="userfound.php" method="post" enctype="multipart/form-data">
         <div class="search">
          <input type="text" name="search" id="text">
          <input type="submit" value="search" name="submit">
@@ -43,47 +45,45 @@
 </form>
 
 <?php
-  // $DefaultSQL = "SELECT * FROM img";
-  // $result = $conn->query($DefaultSQL);
-  
-if(isset($_POST["submit"])){
+ if(isset($_POST["submit"])){
   $search=$_POST["search"];
 
-  
   $post="SELECT user FROM user WHERE user LIKE '%$search%'";
   $result=$conn->query($post);
-  
+     
     if ($result->num_rows > 0){
       while($row=$result->fetch_assoc()){
       $user = $row["user"];
 
+    // Display user's name　検索したuser名　表示
       echo "Finding List<br>";
       echo "<form action='userfound.php' method='POST'>";
-      echo "<input type='hidden' name='user' value= <?php echo $user ?>>";
+      echo "<input type='hidden' name='user' value= <?php echo $user ?> >";
       echo "<input type='submit' name='Clickuser' value= $user>";
-       echo "</form>";
-      }
-   } else{
-   echo "No match found";
+      // Inside 'Clickuser'  の中に検索したユーザーが入ってる
+      echo "</form>";   
+        }
+   }  else{
+      echo "No match found";
   }
 }  
-?>
+?> 
+
 
 <div class='allpic'>
-<?php
-  include 'mysql.php';
-  
-  $who=$_SESSION['user'];
-   $sql ="SELECT * FROM img WHERE user='$who'";
+<?php  
+// * Can bring all value. $found is when you search user name
+   $sql ="SELECT * FROM img WHERE user='$found'";
    $result = $conn->query($sql);
+
   if($result->num_rows > 0){ 
    while ($row = $result->fetch_assoc()) {
       $imgID=$row['imgID'];
+
       // Bring DB value and show it.
 
-        // echo "$row['img']"; isnt work
     echo "<div class='displaypic'>";
-    echo "<a href='post.edit.php?imgID=$imgID'>";
+    echo "<a href='post_user.php?imgID=$imgID'>";
     echo "<img class='userpost' src='photoupload/upfile/". $row['img'] ."'>";
     echo '</a>';
 
@@ -95,6 +95,5 @@ if(isset($_POST["submit"])){
 }
 ?>
 </div>
-
 </body>
 </html>

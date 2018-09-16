@@ -93,8 +93,7 @@ li img{
 
 .user {
  
-  height: 14em;
+  height: 16em;
   border: dotted;
   overflow: auto;
-  border-bottom: 10px solid black;
 }
